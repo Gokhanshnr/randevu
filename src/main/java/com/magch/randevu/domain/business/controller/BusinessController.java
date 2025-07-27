@@ -6,6 +6,7 @@ import com.magch.randevu.domain.models.BaseResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/business")
@@ -18,7 +19,7 @@ public class BusinessController {
     }
 
     @PostMapping("/save")
-    public BaseResponse<Long> saveBusiness(@RequestBody BusinessDto request) {
+    public BaseResponse<Long> saveBusiness(@Valid @RequestBody BusinessDto request) {
         return BaseResponse.ok(businessService.saveOrUpdate(request));
     }
 

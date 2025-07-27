@@ -1,5 +1,6 @@
 package com.magch.randevu.domain.business.dto;
 
+import com.magch.randevu.domain.models.enums.ShopCategoryEnum;
 import com.magch.randevu.domain.models.enums.Status;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -34,7 +35,7 @@ public class BusinessDto {
     private String addressDetail;
 
     @NotBlank(message = "Category cannot be blank")
-    private String category;
+    private ShopCategoryEnum category;
 
     @NotBlank(message = "Phone number cannot be blank")
     private String phoneNumber;
@@ -46,5 +47,7 @@ public class BusinessDto {
     private String taxNumber;
 
     @NotBlank(message = "Tax office cannot be blank")
+    private String taxOffice;
+
     private Status status;
 }

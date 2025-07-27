@@ -2,6 +2,7 @@ package com.magch.randevu.exception;
 
 import com.magch.randevu.domain.models.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -92,5 +93,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.ok(BaseResponse.fault(null, message));
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<BaseResponse<Object>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        String message = "Veri bütünlüğü hatası: ";
+        if (ex.getMessage().contains("unique constraint") || ex.getMessage().contains("duplicate key")) {
+            message += "Bu kayıt zaten mevcut";
+        } else if (ex.getMessage().contains("not-null")) {
+            message += "Zorunlu alan boş bırakılamaz";
+        } else {
+            message += "Veritabanı kısıtlaması ihlali";
+        }
+        return ResponseEntity.ok(BaseResponse.fault(null, message));
+    }
 
 }

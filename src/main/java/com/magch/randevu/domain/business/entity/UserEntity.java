@@ -1,13 +1,15 @@
 package com.magch.randevu.domain.business.entity;
 
 import com.magch.randevu.utils.entity.BaseEntity;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
+@Table(name = "users")
 @Getter
 @Setter
 public class UserEntity extends BaseEntity {
@@ -24,24 +26,13 @@ public class UserEntity extends BaseEntity {
     private LocalTime endTime;
     private String token;
 
-    /*
-    Mola Saatleri
-Her x Dakikada Randevu
-Galeri (İşlem Kişi)
-
-İzinsiz Randevu İptal edebilsin
-Randevuları onaylayabilsin
-Randevu İptal Etme İşlemini Onaylıyabilsin
-İzinsiz izin girebilsin
-İzin isteklerini onaylayabilsin
-İzinsiz randevuyu başka kişinin üzerine atabilsin
-Randevu atma işlemini onaylayabilsin
-     */
-
     private Boolean canCancelAppointmentWithoutPermission;
     private Boolean canApproveAppointment;
     private Boolean canApproveAppointmentCancellation;
     private Boolean canTakeLeaveWithoutPermission;
     private Boolean canApproveLeaveRequests;
+
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<WorkScheduleEntity> workSchedules;
 
 }

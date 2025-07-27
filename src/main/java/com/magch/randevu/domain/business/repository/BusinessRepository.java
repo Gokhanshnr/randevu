@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface BusinessRepository extends JpaRepository<BusinessEntity, Long> {
     BusinessEntity findByName(String name);
 
-    Optional<BusinessEntity> findByWebAddress(String webAddress);
+    Optional<BusinessEntity> findByWebsite(String website);
 
     boolean existsByWebsite(String webAddress);
 }

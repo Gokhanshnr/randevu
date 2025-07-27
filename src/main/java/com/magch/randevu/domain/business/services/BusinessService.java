@@ -24,7 +24,7 @@ public class BusinessService {
         BusinessEntity entity = dto.getId() == null
                 ? mapper.toEntity(dto)
                 : repository.findById(dto.getId())
-                .map(existing -> mapper.toEntity(dto, existing))
+                .map(existing -> mapper.updateEntity(existing, dto))
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Business not found with id: " + dto.getId()));
 
@@ -41,7 +41,7 @@ public class BusinessService {
 
     @Transactional(readOnly = true)
     public BusinessDto findByWebName(String webName) {
-        return repository.findByWebAddress(webName)
+        return repository.findByWebsite(webName)
                 .map(mapper::toDto)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Business not found with web name: " + webName));

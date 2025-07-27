@@ -5,6 +5,7 @@ import com.magch.randevu.domain.business.dto.BusinessDto;
 import com.magch.randevu.domain.business.entity.BusinessEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
@@ -16,7 +17,16 @@ public interface BusinessMapper {
 
     BusinessDto toDto(BusinessEntity businessEntity);
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(source = "businessDto.name", target = "name")
+    @Mapping(source = "businessDto.surname", target = "surname")
+    @Mapping(source = "businessDto.shopName", target = "shopName")
+    @Mapping(source = "businessDto.city", target = "city")
+    @Mapping(source = "businessDto.district", target = "district")
+    @Mapping(source = "businessDto.addressDetail", target = "addressDetail")
+    @Mapping(source = "businessDto.category", target = "category")
+    @Mapping(source = "businessDto.phoneNumber", target = "phoneNumber")
+    @Mapping(source = "businessDto.website", target = "website")
+    @Mapping(source = "businessDto.taxNumber", target = "taxNumber")
     @Mapping(target = "talentId", ignore = true)
-    BusinessEntity toEntity(BusinessDto businessDto, BusinessEntity businessEntity);
+    BusinessEntity updateEntity(@MappingTarget BusinessEntity businessEntity, BusinessDto businessDto);
 }

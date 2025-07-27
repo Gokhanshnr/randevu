@@ -20,10 +20,6 @@ import java.util.Objects;
 @ToString
 public class BusinessEntity extends BaseEntity {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "talent_id", nullable = false, unique = true)
-    private Integer talentId;
-
     @NotNull
     @Size(max = 50)
     @Column(name = "first_name", nullable = false, length = 50)
