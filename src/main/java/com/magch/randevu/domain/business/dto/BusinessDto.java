@@ -8,7 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BusinessDto {
+
     private Long id;
+    
+    public Long getId() {
+        return id;
+    }
 
     @NotBlank(message = "Name cannot be blank")
     private String name;

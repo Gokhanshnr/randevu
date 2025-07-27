@@ -15,6 +15,14 @@ public class GeneralException extends RuntimeException{
     private String errorCode;
     private String message;
     private boolean success = false;
+    
+    public String getErrorCode() {
+        return errorCode;
+    }
+    
+    public boolean isSuccess() {
+        return success;
+    }
 
     public GeneralException() {
         super();

@@ -22,6 +22,10 @@ public abstract class BaseEntity {
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
+    
+    public Long getId() {
+        return id;
+    }
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)

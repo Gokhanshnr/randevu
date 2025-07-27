@@ -4,14 +4,18 @@ import com.magch.randevu.domain.business.dto.BusinessDto;
 import com.magch.randevu.domain.business.services.BusinessService;
 import com.magch.randevu.domain.models.BaseResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/business")
-@RequiredArgsConstructor
 public class BusinessController {
 
     private final BusinessService businessService;
+    
+    public BusinessController(BusinessService businessService) {
+        this.businessService = businessService;
+    }
 
     @PostMapping("/save")
     public BaseResponse<Long> saveBusiness(@RequestBody BusinessDto request) {

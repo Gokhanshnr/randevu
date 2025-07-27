@@ -6,17 +6,19 @@ import com.magch.randevu.domain.business.mapper.BusinessMapper;
 import com.magch.randevu.domain.business.repository.BusinessRepository;
 
 import com.magch.randevu.exception.ResourceNotFoundException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class BusinessService {
 
     private final BusinessRepository repository;
     private final BusinessMapper mapper = BusinessMapper.INSTANCE;
+
+    public BusinessService(BusinessRepository repository) {
+        this.repository = repository;
+    }
 
     public Long saveOrUpdate(BusinessDto dto) {
         BusinessEntity entity = dto.getId() == null

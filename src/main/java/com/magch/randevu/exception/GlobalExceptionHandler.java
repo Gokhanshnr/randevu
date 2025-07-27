@@ -1,11 +1,5 @@
 package com.magch.randevu.exception;
 
-import com.etstur.deep.base.response.BaseResponse;
-import com.etstur.deep.config.Properties;
-import com.etstur.deep.domain.order.model.booking.BookReservationBaseResponse;
-import com.etstur.deep.domain.order.model.booking.BookReservationResponse;
-import com.etstur.deep.domain.order.model.booking.DeepOrderStatusEnum;
-import com.etstur.deep.utils.ExceptionLogger;
 import com.magch.randevu.domain.models.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -46,7 +40,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(GeneralException.class)
-    public ResponseEntity<BaseResponse<Object>> handleGeneralException(GeneralException generalException) {-
+    public ResponseEntity<BaseResponse<Object>> handleGeneralException(GeneralException generalException) {
         if (!generalException.isSuccess())
             return ResponseEntity.ok(BaseResponse.fault(generalException.getErrorCode(), generalException.getMessage()));
 
